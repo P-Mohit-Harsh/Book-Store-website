@@ -1,0 +1,48 @@
+.navbar-nav > li{
+  margin-right: 2vw;
+}
+
+.nav-item:hover
+{
+  transition-duration: 0.3s;
+  transform: translateY(-0.2vw);
+}
+
+.card:hover
+{
+  cursor: pointer;
+  transition-duration: 0.3s;
+  transform: scale(1.1,1.1);
+}
+
+.categories:hover
+{
+  cursor: pointer;
+  transition-duration: 0.3s;
+  transform: scale(1.2,1.2);
+}
+
+h3{
+  font-size: 1.5vw;
+}
+
+h5{
+  font-size: 0.8vw;
+}
+
+p{
+  font-size: 0.8vw;
+}
+h4{
+  font-size: 1vw;
+}
+
+.blockquote-footer{
+
+  font-size: 0.6vw;
+
+}
+.sidebartab:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
