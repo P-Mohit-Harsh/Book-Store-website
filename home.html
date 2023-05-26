@@ -1,0 +1,645 @@
+{% load static %}
+{%static "images" as baseUrl%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="{%static 'images/rough.css' %}" />
+    <title>BookStore</title>
+  </head>
+  <body style="background-color: rgb(224, 231, 236)">
+    <div class="container-fluid py-2" style="background-color: rgb(41,46,126);">
+      <nav class="navbar navbar-expand-xl" style="margin-left: 3vw;">
+        <div class="container-fluid">
+          <a
+            class="navbar-brand"
+            href="#"
+            style="color: aliceblue; margin-left: 3vw; font-size: 1.2vw; "
+            ><img
+              src="{% static 'images/navbar/icons8-book-40.png' %}"
+              alt="Logo"
+              style="width: 2vw;"
+              class="d-inline-block align-text-top me-2"
+            />BookStore</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: 2vw">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="home"
+                  style="color: aliceblue; font-size: 1vw;"
+                  ><img
+                    src="{% static 'images/navbar/icons8-home-40.png' %}"
+                    alt="Logo"
+                    style="width: 1vw;"
+                    class="d-inline-block align-text-center me-2"
+                  />Home</a
+                >
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style="color: aliceblue; font-size: 1vw;"
+                  ><img
+                    src="{% static 'images/navbar/icons8-book-40.png' %}"
+                    alt="Logo"
+                    style="width: 1vw;"
+                    class="d-inline-block align-text-center me-2"
+                  />
+                  Books
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: aliceblue;font-size: 1vw;"
+                  ><img
+                    src="{% static 'images/navbar/icons8-contact-16.png' %}"
+                    alt="Logo"
+                    style="width: 1vw;"
+                    class="d-inline-block align-text-center me-2"
+                  />Contact</a
+                >
+              </li>
+              <li>
+                <form action="search">
+                  <div class="input-group mt-1">
+                    <input type="search" name="book_name" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" style="width: 25vw;height: 2vw;">
+                    <button class="btn" type="submit" id="button-addon2"  style="background-color: rgb(171, 231, 255); border: 0; height: 2vw; width: 3vw;"><img class="d-flex" src="{%static 'images/navbar/icons8-search-50.png'%}" alt="" style="block-size: 1vw;margin:auto;" ></button>
+                  </div>
+                </form>
+            </li>
+
+            <li class="nav-item " >
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="#"
+                style="color: aliceblue;font-size: 1vw;"
+                ><img
+                  src="{%static 'images/navbar/icons8-lock-94.png'%}"
+                  alt="Logo"
+                  style="width: 1vw;"
+                  class="d-inline-block align-text-center me-2"
+                />LogIn</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="#"
+                style="color: aliceblue;font-size: 1vw;"
+                ><img
+                  src="{%static 'images/navbar/icons8-cart-94.png'%}"
+                  alt="Logo"
+                  style="width: 1vw;"
+                  class="d-inline-block align-text-center me-2"
+                />Cart</a>
+            </li>
+          </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container-fluid mt-5" style="width: 85vw;">
+      <div class="row">
+        <div class="col-lg-8">
+
+          <div class="container" style="background-color: white; height: 25vw; border-radius: 30px; padding-left: 1vw; ">
+
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="height: 24vw; width:auto; border-radius: 30px; margin-left: -0.7vw;">
+              <div class="carousel-indicators">
+                <button type="button "  data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button "  data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button "  data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active" >
+                  
+                  <div class="row"  style="padding: 0 5vw 0 4vw;">
+                    <div class="col-7" style="padding: 3vw 5vw 3vw 3vw;">
+                      <figure class="text-start" >
+                        <blockquote class="blockquote" > 
+                          <h1 style="font-size: 2.5vw; font-family: lucida sans;">Buy and sell your books for the best price</h1>
+                        </blockquote>
+                        
+                      <p class=" fw-semibold" style="font-size: 0.8vw;">
+                        From applied literature to educational resources, we have a lot of textbooks to offer you. 
+                        We provide only the best books for you.
+                      </p>
+                      <button type="button" class="btn btn-outline-primary">Learn More</button>
+
+                    </div>
+                    <div class="col-5">
+                      <img src="{%static 'images/carousel/books_bundle.jpg'%}" alt="" style="width:18vw; margin: 2vw 1vw 1vw 1vw;">
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="carousel-item" >
+                  
+                  <div class="row" style="padding: 0 5vw 0 4vw;">
+                    <div class="col-7" style="padding: 3vw 5vw 3vw 3vw;">
+                      <figure class="text-start" >
+                        <blockquote class="blockquote" > 
+                          <h1 style="font-size: 2.5vw; font-family: lucida sans;">Buy and sell your books for the best price</h1>
+                        </blockquote>
+                        
+                      <p class=" fw-semibold" style="font-size: 0.8vw;">
+                        From applied literature to educational resources, we have a lot of textbooks to offer you. 
+                        We provide only the best books for you.
+                      </p>
+                      <button type="button" class="btn btn-outline-primary">Learn More</button>
+
+                    </div>
+                    <div class="col-5">
+                      <img  src="{%static 'images/carousel/harry_potter_books.jpg'%}" alt="" style="width: 20vw; margin: 5vw 0 3vw 0;">
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="carousel-item" >
+                  
+                  <div class="row"  style="padding: 0 5vw 0 4vw;">
+                    <div class="col-7" style="padding: 3vw 5vw 3vw 3vw;">
+                      <figure class="text-start" >
+                        <blockquote class="blockquote" > 
+                          <h1 style="font-size: 2.5vw; font-family: lucida sans;">Buy and sell your books for the best price</h1>
+                        </blockquote>
+                        
+                      <p class=" fw-semibold" style="font-size: 0.8vw;">
+                        From applied literature to educational resources, we have a lot of textbooks to offer you. 
+                        We provide only the best books for you.
+                      </p>
+                      <button type="button" class="btn btn-outline-primary">Learn More</button>
+
+                    </div>
+                    <div class="col-5">
+                      <img src="{%static 'images/carousel/books_bundle.jpg'%}" alt="" style="width:18vw; margin: 2vw 1vw 1vw 1vw;">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-lg-4">
+
+          <div class="container-lg" style=" height: 25vw; border-radius: 30px; background-color: rgb(255 224 246); ">
+
+            <img src="{%static 'images/carousel/sale.png'%}" alt="" style="width: 22vw; margin: 0 2vw ;">
+            <div class="input-group mt-1" style="padding: 0.5vw 6vw 1vw 5vw;">
+              <input type="search" class="form-control fw-light" placeholder="Enter Coupon Code" aria-label="Search" aria-describedby="button-addon2" style="width: 3vw;height: 2vw; background-color: rgb(255 241 241); font-size: 0.7vw; border-radius: 30px; margin-right: 1vw;">
+              <button class="btn fw-semibold" type="button"  style="background-color: rgb(255, 98, 25); border: 0; height: 2vw; width: auto; border-radius: 40px;color: white;text-align: center;">Go</button>
+            </div>
+           
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="container-fluid" style="margin-top: 5vw; display: flex; width: 85vw; padding: 1vw 1vw 1vw 1vw;">
+      <h3 style="display: flex; margin-right: auto;">Most Popular Releases</h3>
+      <button class="btn btn-outline-primary" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" style="display: flex; margin-left: auto; margin-top: auto;font-size: 0.8vw;">
+        View all
+      </button>
+    </div>
+
+    <div class="container-fluid mt-5" style=" width: 85vw;">
+
+      <div class="row">
+
+        {% for book in popular_books%}
+
+        <div class="col-3">
+          <div class="card" style="width: 19.5vw; border-radius: 20px; height: fit-content;padding: 0.5vw 0.7vw 0.5vw 0.7vw;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-5">
+                  <img src="{{baseUrl}}/{{book.img}}" class="card-img-top" alt="..." style="width:6vw ; height: 9vw;">
+                </div>
+                <div class="col-7">
+                  <figure style="height: 2vw; width: auto;">
+                    <blockquote class="blockquote fw-bold">
+                      <p>{{book.title}}</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer" style="margin-bottom: -0.5vw;">
+                      {{book.author}} <cite title="Source Title"></cite>
+                    </figcaption>
+                  </figure>
+                  <div style="width: auto; height: 1.5vw; overflow-y: auto; margin-top: 1.5vw; ">
+                    <p class="card-text" style="font-size: 0.7vw;margin-bottom: 0vw;"> {{book.cap}}</p>
+                  </div>
+                  <img src="{{baseUrl}}/{{book.stars}}" alt="" style="width: 5vw; height: 1vw;">
+                  <div style="margin: 0.3vw 1vw 0vw 0vw;">
+                    <span style="font-size: 1vw; margin-right: 0.5vw;">${{book.price}}</span>
+                    <button class="btn btn-outline-primary" type="submit" style="font-size: 0.5vw;">Add to cart</button>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>  
+        </div>
+      
+        {% endfor %}
+      
+      
+      </div>
+      
+    </div>
+
+    <div class="container-fluid" style="margin-top: 2.5vw; display: flex; width: 85vw; padding: 1vw 1vw 0.5vw 1vw;">
+      <h3 style="display: flex; margin-right: auto;">New Releases</h3>
+      <button class="btn btn-outline-primary" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" style="display: flex; margin-left: auto; margin-top: auto;font-size: 0.8vw;">
+        View all
+      </button>
+    </div>
+
+    <div class="container-fluid mt-5" style=" width: 85vw;">
+
+      <div class="row">
+
+        {% for book in new_books%}
+
+        <div class="col-3">
+          <div class="card" style="width: 19.5vw; border-radius: 20px; height: fit-content;padding: 0.5vw 0.7vw 0.5vw 0.7vw;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-5">
+                  <img src="{{baseUrl}}/{{book.img}}" class="card-img-top" alt="..." style="width:6vw ; height: 9vw;">
+                </div>
+                <div class="col-7">
+                  <figure style="height: 2vw; width: auto;">
+                    <blockquote class="blockquote fw-bold">
+                      <p>{{book.title}}</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer" style="margin-bottom: -0.5vw;">
+                      {{book.author}} <cite title="Source Title"></cite>
+                    </figcaption>
+                  </figure>
+                  <div style="width: auto; height: 1.5vw; overflow-y: auto; margin-top: 1.5vw; ">
+                    <p class="card-text" style="font-size: 0.7vw;margin-bottom: 0vw;"> {{book.cap}}</p>
+                  </div>
+                  <img src="{{baseUrl}}/{{book.stars}}" alt="" style="width: 5vw; height: 1vw;">
+                  <div style="margin: 0.3vw 1vw 0vw 0vw;">
+                    <span style="font-size: 1vw; margin-right: 0.5vw;">${{book.price}}</span>
+                    <button class="btn btn-outline-primary" type="submit" style="font-size: 0.5vw;">Add to cart</button>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>  
+        </div>
+      
+        {% endfor %}      
+      
+      </div>
+      
+    </div>
+
+
+    <div class="container-fluid mt-5" style="width: 85vw; height: fit-content; background-color: white; border-radius: 30px; padding: 2vw 2vw 2vw 2vw;">
+
+      <div style="margin: 1vw 3vw 1.5vw; display: flex;">
+        <h4 style="display: flex; margin-right: auto; ">Shop by Exams</h4>
+        <button class="btn btn-outline-primary" type="submit" style="display:flex; font-size: 0.7vw; margin-left: auto; margin-top: auto;font-size: 0.8vw;">View All</button>
+      </div>
+
+      <hr class="solid" style="border-top: 3px solid rgb(224, 231, 236);">
+
+      <div class="row" style="margin-right: 0.8vw;">
+
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-upsc-48.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Upsc</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-fighter-jet-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Defense</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-brain-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Artificial Intelligence</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-bank-48.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Banking</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-law-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Law</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-international-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>International Exams</h5>
+        </div>
+
+      </div>
+
+      <div class="row" style="margin-right: 0.8vw; margin-top: 2vw;">
+
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-certificate-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Certiication</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-combo-chart-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Analytics</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-management-48.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Management</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-microscope-48.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Medical</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-new-delhi-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Politics</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/categories/icons8-govt-50.png' %}" class="categories" alt="" style="width: 6vw; border-color: rgb(255, 151, 103); margin-bottom: 1vw;">
+          <h5>Govt Exams</h5>
+        </div>
+
+      </div>
+      
+    </div>
+
+    <div class="container-fluid" style="margin-top: 5vw; display: flex; width: 85vw; padding: 1vw 1vw 1vw 1vw;">
+      <h3 style="display: flex; margin-right: auto;">Deals of the week</h3>
+      <button class="btn btn-outline-primary" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" style="display: flex; margin-left: auto;font-size: 0.8vw;">
+        View all
+      </button>
+    </div>
+
+    <div class="container-fluid mt-5" style=" width: 85vw;">
+
+      <div class="row">
+
+        {% for book in deal_books%}
+
+        <div class="col-3">
+          <div class="card" style="width: 19.5vw; border-radius: 20px; height: fit-content;padding: 0.5vw 0.7vw 0.5vw 0.7vw;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-5">
+                  <img src="{{baseUrl}}/{{book.img}}" class="card-img-top" alt="..." style="width:6vw ; height: 9vw;">
+                </div>
+                <div class="col-7">
+                  <figure style="height: 2vw; width: auto;">
+                    <blockquote class="blockquote fw-bold">
+                      <p>{{book.title}}</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer" style="margin-bottom: -0.5vw;">
+                      {{book.author}} <cite title="Source Title"></cite>
+                    </figcaption>
+                  </figure>
+                  <div style="width: auto; height: 1.5vw; overflow-y: auto; margin-top: 1.5vw; ">
+                    <p class="card-text" style="font-size: 0.7vw;margin-bottom: 0vw;"> {{book.cap}}</p>
+                  </div>
+                  <img src="{{baseUrl}}/{{book.stars}}" alt="" style="width: 5vw; height: 1vw;">
+                  <div style="margin: 0.3vw 1vw 0vw 0vw;">
+                    <span style="font-size: 1vw; margin-right: 0.5vw;">${{book.price}}</span>
+                    <button class="btn btn-outline-primary" type="submit" style="font-size: 0.5vw;">Add to cart</button>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>  
+        </div>
+      
+        {% endfor %}     
+      
+      </div>
+      
+    </div>
+
+    <div class="container-fluid" style="margin-top: 2.5vw; display: flex; width: 85vw; padding: 1vw 1vw 0.5vw 1vw;">
+      <h3 style="display: flex; margin-right: auto;">Best Seller</h3>
+      <button class="btn btn-outline-primary" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" style="display: flex; margin-left: auto; margin-top: auto; font-size: 0.8vw;">
+        View all
+      </button>
+    </div>
+
+    <div class="container-fluid mt-5" style=" width: 85vw;">
+
+      <div class="row">
+
+        {% for book in best_books%}
+
+        <div class="col-3">
+          <div class="card" style="width: 19.5vw; border-radius: 20px; height: fit-content;padding: 0.5vw 0.7vw 0.5vw 0.7vw;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-5">
+                  <img src="{{baseUrl}}/{{book.img}}" class="card-img-top" alt="..." style="width:6vw ; height: 9vw;">
+                </div>
+                <div class="col-7">
+                  <figure style="height: 2vw; width: auto;">
+                    <blockquote class="blockquote fw-bold">
+                      <p>{{book.title}}</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer" style="margin-bottom: -0.5vw;">
+                      {{book.author}} <cite title="Source Title"></cite>
+                    </figcaption>
+                  </figure>
+                  <div style="width: auto; height: 1.5vw; overflow-y: auto; margin-top: 1.5vw; ">
+                    <p class="card-text" style="font-size: 0.7vw;margin-bottom: 0vw;"> {{book.cap}}</p>
+                  </div>
+                  <img src="{{baseUrl}}/{{book.stars}}" alt="" style="width: 5vw; height: 1vw;">
+                  <div style="margin: 0.3vw 1vw 0vw 0vw;">
+                    <span style="font-size: 1vw; margin-right: 0.5vw;">${{book.price}}</span>
+                    <button class="btn btn-outline-primary" type="submit" style="font-size: 0.5vw;">Add to cart</button>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>  
+        </div>
+      
+        {% endfor %}     
+      
+      </div>
+      
+    </div>
+
+    <div class="container-fluid mt-5" style="width: 85vw; height: fit-content; background-color: white; border-radius: 30px; padding: 2vw 2vw 2vw 2vw;">
+
+      <div style="margin: 1vw 3vw 1.5vw; display: flex;">
+        <h4 style="display: flex; margin-right: auto; ">Featured Authors</h4>
+        <button class="btn btn-outline-primary" type="submit" style="display:flex; font-size: 0.7vw; margin-left: auto; margin-top: auto;">View All</button>
+      </div>
+
+      <hr class="solid" style="border-top: 3px solid rgb(224, 231, 236);">
+
+      <div class="row" style="margin: 2vw 0vw 1vw 3vw;">
+
+        <div class="col-2">
+          <img src="{%static 'images/authors/Amish_Tripathi_Author.jpg' %}" class="categories" alt="" style="width: 8vw; border-style: hidden; border-radius: 200px; height: 8vw; object-fit: cover; display: block; margin: auto; margin-bottom: 1vw;" >
+          <h5 style="text-align: center;">Amish Tripathi</h5>    
+        </div>
+        <div class="col-2">
+          <img src="{%static 'images/authors/devduttpattanaik.jpg' %}" class="categories" alt="" style="width: 8vw; border-style: hidden; border-radius: 200px; height: 8vw; object-fit: cover; display: block; margin: auto; margin-bottom: 1vw;" >
+          <h5 style="text-align: center;">Devdutt Pattnaik</h5>    
+        </div>
+        <div class="col-2">
+          <img src="{%static 'images/authors/gaurgopaldas.jpg' %}" class="categories" alt="" style="width: 8vw; border-style: hidden; border-radius: 200px; height: 8vw; object-fit: cover; display: block; margin: auto; margin-bottom: 1vw;" >
+          <h5 style="text-align: center;">Gaur Gopal Das</h5>    
+        </div>
+        <div class="col-2">
+          <img src="{%static 'images/authors/hcverma.png' %}" class="categories" alt="" style="width: 8vw; border-style: hidden; border-radius: 200px; height: 8vw; object-fit: cover; display: block; margin: auto; margin-bottom: 1vw;" >
+          <h5 style="text-align: center;">H.C. Verma</h5>    
+        </div>
+        <div class="col-2">
+          <img src="{%static 'images/authors/jkrowling.jpg' %}" class="categories" alt="" style="width: 8vw; border-style: hidden; border-radius: 200px; height: 8vw; object-fit: cover; display: block; margin: auto; margin-bottom: 1vw;" >
+          <h5 style="text-align: center;">J.K. Rowling</h5>    
+        </div>
+        <div class="col-2">
+          <img src="{%static 'images/authors/sudha_murthy_20191230.jpg' %}" class="categories" alt="" style="width: 8vw; border-style: hidden; border-radius: 200px; height: 8vw; object-fit: cover; display: block; margin: auto; margin-bottom: 1vw;" >
+          <h5 style="text-align: center;">Sudha Murthy</h5>    
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="container-fluid mt-5" style="width: 85vw; height: fit-content; background-color: white; border-radius: 30px; padding: 2vw 2vw 2vw 2vw;">
+
+      <div style="margin: 1vw 3vw 1.5vw; display: flex;">
+        <h4 style="display: flex; margin-right: auto; ">Featured Publications</h4>
+        <button class="btn btn-outline-primary" type="submit" style="display:flex; font-size: 0.7vw; margin-left: auto;">View All</button>
+      </div>
+
+      <hr class="solid" style="border-top: 3px solid rgb(224, 231, 236); margin-bottom: 1vw;">
+
+      <div class="row" style="margin-right: 0.8vw;">
+
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/publications/authorstree.jpeg' %}" class="categories" alt="" style="width: 6vw; border-style: hidden; border-radius: 200px; height: 6vw; object-fit: scale-down; display: block; margin: auto; margin-bottom: 1vw;">
+          <h5>Authors Tree</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/publications/particularbooks.jpg' %}" class="categories" alt="" style="width: 6vw; border-style: hidden; border-radius: 200px; height: 6vw; object-fit: scale-down; display: block; margin: auto; margin-bottom: 1vw;">
+          <h5>Particular Books</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/publications/riotbooks.jpg' %}" class="categories" alt="" style="width: 6vw; border-style: hidden; border-radius: 200px; height: 6vw; object-fit: scale-down; display: block; margin: auto; margin-bottom: 1vw;">
+          <h5>Riot Books</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/publications/schand.jpg' %}" class="categories" alt="" style="width: 6vw; border-style: hidden; border-radius: 200px; height: 6vw; object-fit: scale-down; display: block; margin: auto; margin-bottom: 1vw;">
+          <h5>S. Chand</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/publications/walker.png' %}" class="categories" alt="" style="width: 6vw; border-style: hidden; border-radius: 200px; height: 6vw; object-fit: scale-down; display: block; margin: auto; margin-bottom: 1vw;">
+          <h5>Walker</h5>
+        </div>
+        <div class="col-2" style="text-align: center;">
+          <img src="{%static 'images/publications/schand.jpg' %}" class="categories" alt="" style="width: 6vw; border-style: hidden; border-radius: 200px; height: 6vw; object-fit: scale-down; display: block; margin: auto; margin-bottom: 1vw;">
+          <h5>S. Chand</h5>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid" style="background-color: rgb(41,46,126); height: fitcontent; margin-top: 5vw; padding: 2vw 4vw 2vw 4vw;">
+
+      <div class="row">
+
+        <div class="col-3" style="padding: 1vw 2vw 1vw 2vw;">
+          <h4 style="color:  aliceblue;">About Us</h4>
+          <p style="color: white; margin-top: 1vw;">At BookStore.com we are working towards bringing our retail experience to the web and we strive to uphold this prestige by serving our customers better.</p>
+          <a href="" style="color: aliceblue;margin-top: 1vw;">Know More</a>
+        </div>
+        <div class="col-3" style="padding: 1vw 2vw 1vw 2vw;">
+          <h4 style="color: aliceblue;">Support</h4>
+          <a href="" class="nav-link" style="color: aliceblue; margin-top: 1vw;"><img src="{%static 'images/footer/icons8-phone-48.png' %}" class="d-inline-block" alt="" style="width: 1.5vw; margin-right: 1vw;">+91 8764857</a>
+          <a href="" class="nav-link" style="color: aliceblue; margin-top: 1vw;"><img src="{%static 'images/footer/icons8-mail-48.png' %}" class="d-inline-block" alt="" style="width: 1.5vw; margin-right: 1vw;">bookstore@gmail.com</a>
+          <a href="" class="nav-link" style="color: aliceblue; margin-top: 1vw;"><img src="{%static 'images/footer/icons8-time-span-48.png' %}" class="d-inline-block" alt="" style="width: 1.5vw; margin-right: 1vw;">9:30 AM to 6:30 PM</a>
+        </div>
+        <div class="col-3" style="padding: 1vw 2vw 1vw 2vw;">
+          <h4 style="color: aliceblue;">More Services</h4>
+          <a href="" class="nav-link" style="color: aliceblue; margin-top: 1vw;"><img src="{%static 'images/footer/icons8-gift-48.png' %}" class="d-inline-block" alt="" style="width: 1.5vw; margin-right: 1vw;">E-Gift Card</a>
+          <a href="" class="nav-link" style="color: aliceblue; margin-top: 1vw;"><img src="{%static 'images/footer/icons8-info-48.png' %}" class="d-inline-block" alt="" style="width: 1.5vw; margin-right: 1vw;">Check E-gift Card Balance</a>
+          <a href="" class="nav-link" style="color: aliceblue; margin-top: 1vw;"><img src="{%static 'images/footer/icons8-truck-48.png' %}" class="d-inline-block" alt="" style="width: 1.5vw; margin-right: 1vw;">Track your Order</a>
+          <a href="" class="nav-link" style="color: aliceblue; margin-top: 1vw;"><img src="{%static 'images/footer/icons8-location-48.png' %}" class="d-inline-block" alt="" style="width: 1.5vw; margin-right: 1vw;">Retail Stores</a>
+        </div>
+        
+        <div class="col-3" style="padding: 1vw 2vw 1vw 2vw;">
+
+          <h4 style="color: aliceblue;">Payment</h4>
+          <div style="margin-top: 1vw;">
+
+            <button class="footer-btn" type="button" id="button-addon2"  style="background-color: transparent;  margin-right: 1vw; border: 0;"> <img src="{%static 'images/footer/icons8-visa-48.png' %}" alt=""></button>
+            <button class="footer-btn" type="button" id="button-addon2"  style="background-color: transparent;  margin-right: 1vw; border: 0;"><img src="{%static 'images/footer/icons8-rupay-48.png' %}" alt=""></button>
+            <button class="footer-btn" type="button" id="button-addon2"  style="background-color: transparent; border: 0;"><img src="{%static 'images/footer/icons8-online-payment-48.png' %}" alt=""></button>
+
+          </div>
+
+          <h4 style="color: aliceblue; margin-top: 1vw;">Follow us on</h4>
+          <div style="margin-top: 1vw;">
+
+            <button class="footer-btn" type="button" id="button-addon2"  style="background-color: transparent;  margin-right: 1vw; border: 0;"> <img src="{%static 'images/footer/icons8-insta-48.png' %}" alt=""></button>
+            <button class="footer-btn" type="button" id="button-addon2"  style="background-color: transparent;  margin-right: 1vw; border: 0;"><img src="{%static 'images/footer/icons8-facebook-48.png' %}" alt=""></button>
+            <button class="footer-btn" type="button" id="button-addon2"  style="background-color: transparent; border: 0;"><img src="{%static 'images/footer/icons8-twitter-48.png' %}" alt=""></button>
+
+          </div>
+
+        </div>
+        
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
